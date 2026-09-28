@@ -1,0 +1,33 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.bak
+pos.db
+pos.log
+*.sqlite3-shm
+*.sqlite3-wal
+.env
+test_pillow_opt/
+.DS_Store
+
+# Capacitor / Android build artifacts
+capacitor/node_modules/
+capacitor/android/
+capacitor/.gradle/
+api.txt
+capacitor/www/sqlite-bridge.js
+
+capacitor/src/provider-config.json
+
+# Local daily shop backups
+/backups/
+
+# Device data and private provider credentials
+data/*.sqlite3
+paystack.txt
+swifta.txt
+capacitor/paystack.txt
+capacitor/live_api.txt
+capacitor/www/paystack.txt
+capacitor/sozuri-config.json

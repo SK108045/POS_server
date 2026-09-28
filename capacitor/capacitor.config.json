@@ -1,0 +1,9 @@
+{
+  "appId": "com.oraforge.pos",
+  "appName": "Oraforge POS",
+  "webDir": "www",
+  "server": {
+    "cleartext": true,
+    "androidScheme": "https"
+  }
+}
