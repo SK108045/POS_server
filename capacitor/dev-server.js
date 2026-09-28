@@ -3,7 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const PORT = parseInt(process.env.PORT || process.env.POS_PORT || '3000', 10);
+// Keep browser storage and bookmarks on one stable origin.
+const PORT = 3000;
 const WWW_DIR = path.join(__dirname, 'www');
 const SRC_DIR = path.join(__dirname, 'src');
 const BRIDGE_OUT = path.join(WWW_DIR, 'sqlite-bridge.js');
@@ -222,14 +223,13 @@ function handleRequest(req, res) {
   res.end('404 Not Found: ' + pathname);
 }
 
-function startServer(port, attempts = 0) {
+function startServer(port) {
   const server = http.createServer(handleRequest);
 
   server.on('error', (err) => {
-    if (err.code === 'EADDRINUSE' && attempts < 10) {
-      const nextPort = port + 1;
-      console.log(`[DevServer] Port ${port} is in use, trying ${nextPort}...`);
-      startServer(nextPort, attempts + 1);
+    if (err.code === 'EADDRINUSE') {
+      console.error(`[DevServer] Port ${port} is already in use. If POS is already running, open http://localhost:${port}/pos. Otherwise stop the process using port ${port} and run this command again.`);
+      process.exit(1);
     } else {
       console.error('[DevServer] Server error:', err.message);
       process.exit(1);

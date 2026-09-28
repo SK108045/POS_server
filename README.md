@@ -68,6 +68,8 @@ POS_PORT=8080 python3 app.py
 ## 🔑 Application access
 
 Run `./start-apk-browser.sh` and open `http://localhost:3000` (or use the Android app).
+The browser preview always uses port `3000`, ignoring `PORT` and `POS_PORT` overrides.
+If that port is occupied, it reports the conflict instead of switching ports.
 Every fresh page load starts with the PIN screen. Enter `5408`, then select Retail,
 Pharmacy, Restaurant, Hardware, Boutique, or Bar to open that category's POS directly.
 Logout returns to the PIN screen. Existing category catalogs and sales are preserved.
