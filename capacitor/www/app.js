@@ -3464,9 +3464,7 @@ function showLoginScreen() {
   screen.innerHTML = `
     <div class="launcher-panel">
       <form id="launcherPinForm">
-        <div class="launcher-icon">▦</div>
-        <h1>Oraforge POS</h1>
-        <p>Enter your PIN to continue</p>
+        <h1>PIN</h1>
         <label class="sr-only" for="launcherPin">Application PIN</label>
         <input id="launcherPin" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="off" required aria-describedby="launcherError">
         <div class="pin-pad launcher-keypad">
