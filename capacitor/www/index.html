@@ -6,7 +6,8 @@
   <title>Oraforge POS</title>
   <link rel="stylesheet" href="inter.css?v=20260919-4">
   <link rel="stylesheet" href="styles.css?v=20260919-4">
-  <link rel="stylesheet" href="launcher.css?v=20260929">
+  <link rel="stylesheet" href="launcher.css?v=20260929-categories">
+  <style>body.choosing-pos > .topbar, body.choosing-pos > main { display: none !important; }</style>
   <script>
     localStorage.removeItem('pos_logged_in');
     sessionStorage.removeItem('pos_admin_logged_in');
@@ -16,7 +17,25 @@
     })();
   </script>
 </head>
-<body>
+<body class="choosing-pos">
+  <div id="posLoginScreen" class="launcher-screen">
+    <div class="launcher-panel">
+      <section id="launcherCategories">
+        <h1>Choose your POS</h1>
+        <p>Select a category to start selling</p>
+        <div class="launcher-grid">
+          <button type="button" data-profile="retail" class="launcher-category"><span>🛒</span><strong>Retail / Mini-Mart</strong><small>Supermarket, Grocery & General Retail POS</small></button>
+          <button type="button" data-profile="pharmacy" class="launcher-category"><span>💊</span><strong>Pharmacy & Chemist</strong><small>Pharmacy & Drugstore POS</small></button>
+          <button type="button" data-profile="restaurant" class="launcher-category"><span>🍽️</span><strong>Restaurant & Café</strong><small>Food & Dining POS</small></button>
+          <button type="button" data-profile="hardware" class="launcher-category"><span>🔧</span><strong>Hardware & Tools</strong><small>Hardware Store POS</small></button>
+          <button type="button" data-profile="boutique" class="launcher-category"><span>👗</span><strong>Boutique & Fashion</strong><small>Fashion & Cosmetics POS</small></button>
+          <button type="button" data-profile="bar" class="launcher-category"><span>🍸</span><strong>Bar & Nightclub</strong><small>Bar, Lounge & Club POS</small></button>
+        </div>
+      </section>
+      <p id="launcherError" role="alert"></p>
+      <footer><a href="admin.html" class="launcher-link">Admin login</a></footer>
+    </div>
+  </div>
   <header class="topbar">
     <div class="topbar-left">
       <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation">
@@ -59,7 +78,7 @@
   <script src="sqlite-bridge.js?v=20260919-4"></script>
   <script src="shop-registry.js?v=20260919-4" defer></script>
   <script src="shop-operations.js" defer></script>
-  <script src="app.js?v=20260929" defer></script>
+  <script src="app.js?v=20260929-categories" defer></script>
   <script src="shop-profile-sync.js?v=20260919-4" defer></script>
   <script src="image-search-sync.js?v=20260919-4" defer></script>
   <script src="product-camera.js?v=20260919-4" defer></script>

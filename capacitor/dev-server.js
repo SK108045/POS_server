@@ -244,7 +244,7 @@ function startServer(port) {
     console.log(`  📱 POS Terminal:  ${url}/pos`);
     console.log(`  👑 Admin Portal:  ${url}/admin.html`);
     console.log(`  ⚡ Live Reload:   ACTIVE (edits in capacitor/www/ auto-refresh)`);
-    console.log(`  🔑 Application PIN: 5408 | Admin: 1234`);
+    console.log(`  🔑 Direct category selection | Admin password: 1234`);
     console.log('='.repeat(64));
     console.log('  💡 PRO-TIP FOR SEEING IT "JUST LIKE THE APK":');
     console.log('     1. Open ' + url + ' in Chrome or Firefox.');

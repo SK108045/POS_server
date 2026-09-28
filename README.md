@@ -6,7 +6,7 @@ A powerful, lightweight Point of Sale (POS) system built with **Python 3**, **SQ
 
 ## 🏢 Supported Business Profiles
 
-Enter application PIN `5408`, then choose one of six POS categories. Each category opens directly without a second login:
+Choose one of six POS categories directly on startup. Each category opens directly without a second login:
 
 1. **🛒 Retail / Mini-Mart**: Barcodes, stock inventory, supplier receiving, low-stock & reorder alerts.
 2. **💊 Pharmacy**: Batch tracking, expiry countdown & alerts, drug strengths, manufacturer notes.
@@ -70,13 +70,13 @@ POS_PORT=8080 python3 app.py
 Run `./start-apk-browser.sh` and open `http://localhost:3000` (or use the Android app).
 The browser preview always uses port `3000`, ignoring `PORT` and `POS_PORT` overrides.
 If that port is occupied, it reports the conflict instead of switching ports.
-Every fresh page load starts with the PIN screen. Enter `5408`, then select Retail,
+Every fresh page load starts with the six category cards. Select Retail,
 Pharmacy, Restaurant, Hardware, Boutique, or Bar to open that category's POS directly.
-Logout returns to the PIN screen. Existing category catalogs and sales are preserved.
+Logout returns to category selection. Existing category catalogs and sales are preserved.
 The small **Admin login** link opens the admin password screen; enter `1234`.
 Admin uses the last selected category, defaulting to Retail on a new installation.
 
-These are local application access codes. The separate legacy Python interface retains
+The admin password is a local application access code. The separate legacy Python interface retains
 its existing authentication and is not the launcher described above.
 
 Provider credentials, local databases, and backups are excluded from this repository.

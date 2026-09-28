@@ -3455,62 +3455,16 @@ function initSPARouter() {
 }
 
 
-// PIN entry and category launcher. Each page load starts locked.
+// Render category selection in the initial HTML, before application scripts load.
+const categoryLauncherTemplate = document.getElementById('posLoginScreen').cloneNode(true);
 function showLoginScreen() {
-  qs('#posLoginScreen')?.remove();
-  const screen = document.createElement('div');
-  screen.id = 'posLoginScreen';
-  screen.className = 'launcher-screen';
-  screen.innerHTML = `
-    <div class="launcher-panel">
-      <form id="launcherPinForm">
-        <h1>PIN</h1>
-        <label class="sr-only" for="launcherPin">Application PIN</label>
-        <input id="launcherPin" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="off" required aria-describedby="launcherError">
-        <div class="pin-pad launcher-keypad">
-          ${['1','2','3','4','5','6','7','8','9','clear','0','backspace'].map(key => `<button type="button" data-key="${key}" aria-label="${key === 'backspace' ? 'Delete last digit' : key}">${key === 'clear' ? 'Clear' : key === 'backspace' ? '⌫' : key}</button>`).join('')}
-        </div>
-        <button class="launcher-submit" type="submit">Continue</button>
-      </form>
-      <section id="launcherCategories" hidden>
-        <h1>Choose your POS</h1>
-        <p>Select a category to start selling</p>
-        <div class="launcher-grid">
-          ${SHOP_PROFILES.map(profile => `<button type="button" data-profile="${profile.id}" class="launcher-category"><span>${profile.icon}</span><strong>${profile.name}</strong><small>${profile.tagline}</small></button>`).join('')}
-        </div>
-        <button type="button" id="launcherLock" class="launcher-link">Lock application</button>
-      </section>
-      <p id="launcherError" role="alert"></p>
-      <footer><a href="admin.html" class="launcher-link">Admin login</a></footer>
-    </div>`;
-  document.body.appendChild(screen);
-  const input = screen.querySelector('#launcherPin');
+  document.body.classList.add('choosing-pos');
+  let screen = qs('#posLoginScreen');
+  if (!screen) {
+    screen = categoryLauncherTemplate.cloneNode(true);
+    document.body.appendChild(screen);
+  }
   const error = screen.querySelector('#launcherError');
-  input.addEventListener('input', () => { input.value = input.value.replace(/\D/g, '').slice(0, 4); error.textContent = ''; });
-  screen.querySelectorAll('[data-key]').forEach(button => {
-    button.onclick = () => {
-      const key = button.dataset.key;
-      if (key === 'clear') input.value = '';
-      else if (key === 'backspace') input.value = input.value.slice(0, -1);
-      else if (input.value.length < 4) input.value += key;
-      error.textContent = '';
-      input.focus();
-    };
-  });
-  screen.querySelector('#launcherPinForm').onsubmit = event => {
-    event.preventDefault();
-    if (input.value !== '5408') {
-      error.textContent = 'Incorrect PIN. Please try again.';
-      input.select();
-      return;
-    }
-    input.value = '';
-    error.textContent = '';
-    screen.querySelector('#launcherPinForm').hidden = true;
-    screen.querySelector('#launcherCategories').hidden = false;
-    screen.querySelector('[data-profile]').focus();
-  };
-  screen.querySelector('#launcherLock').onclick = showLoginScreen;
   let opening = false;
   screen.querySelectorAll('[data-profile]').forEach(button => {
     button.onclick = async () => {
@@ -3529,6 +3483,7 @@ function showLoginScreen() {
         await navigateTo('/pos');
         initSPARouter();
         localStorage.setItem('pos_logged_in', 'true');
+        document.body.classList.remove('choosing-pos');
         screen.remove();
       } catch (err) {
         localStorage.removeItem('pos_logged_in');
@@ -3539,7 +3494,6 @@ function showLoginScreen() {
       }
     };
   });
-  input.focus();
 }
 
 // ── Entry Point ───────────────────────────────────────────────────────────────

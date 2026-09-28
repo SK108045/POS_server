@@ -2,12 +2,6 @@
 .launcher-panel { width:min(760px,100%); margin:auto; text-align:center; }
 .launcher-panel h1 { font-size:28px; margin:16px 0 8px; }
 .launcher-panel p { color:var(--muted,#666); margin:0 0 24px; }
-#launcherPinForm { max-width:340px; margin:auto; }
-.launcher-icon { font-size:38px; }
-#launcherPin { width:100%; box-sizing:border-box; padding:16px; border:1px solid var(--line,#ddd); border-radius:12px; background:var(--panel,#fff); color:inherit; text-align:center; font-size:28px; letter-spacing:12px; }
-.launcher-keypad { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:16px 0; }
-.launcher-keypad button { min-height:56px; border-radius:12px; border:1px solid var(--line,#ddd); background:var(--panel,#fff); color:inherit; font-size:20px; cursor:pointer; }
-.launcher-submit { width:100%; padding:16px; border:0; border-radius:12px; background:var(--primary,#171717); color:var(--primary-fg,#fff); font-weight:700; cursor:pointer; }
 .launcher-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin:28px 0; }
 .launcher-category { min-height:180px; padding:24px 14px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; border:1px solid var(--line,#ddd); border-radius:16px; background:var(--panel,#fff); color:inherit; cursor:pointer; }
 .launcher-category:hover { border-color:var(--text,#171717); transform:translateY(-2px); }
@@ -20,5 +14,4 @@
 .launcher-panel [hidden] { display:none !important; }
 .launcher-panel button:focus-visible,.launcher-panel a:focus-visible { outline:3px solid var(--text,#171717); outline-offset:3px; }
 .launcher-panel button:disabled { opacity:.55; cursor:wait; }
-.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
 @media(max-width:600px) { .launcher-screen { padding:20px 16px; } .launcher-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; } .launcher-category { min-height:155px; padding:18px 10px; } .launcher-category small { display:none; } }
